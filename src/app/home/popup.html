@@ -1,0 +1,341 @@
+  <h2 mat-dialog-title>New Purchase entry  
+    <!-- <button mat-raised-button class="btn-reset" *ngIf="true" (click)="onEditClick()"> Reset & Search </button> -->
+    <button *ngIf="isUserSelected" class="btn-edit"  mat-mini-fab color="black" aria-label="Reset & Search" (click)="onEditClick()">
+      <mat-icon>create</mat-icon>
+    </button>
+  </h2>
+  <mat-divider class="mat-divider_titlebar"></mat-divider>
+
+  <div *ngIf="isUserSelected" class="div_wrapper">
+    <div>
+      <table class="table_selected_cust">
+        <tr >
+          <td class="key"> Customer Id </td>
+          <td class="value"> {{customerDetails.get('CUST_ID').value}} </td>
+        </tr>
+        <tr>
+          <td class="key"> Bill number </td>
+          <td class="value"> {{customerDetails.get('BILL_NO').value}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Customer Name </td>
+          <td class="value"> {{customerDetails.get('FIRST_NAME').value + " " + customerDetails.get('LAST_NAME').value}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Mobile number </td>
+          <td class="value"> {{customerDetails.get('MOBILE').value}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Address </td>
+          <td class="value"> {{customerDetails.get('VILLAGE').value + ", " + customerDetails.get('TALUKA').value}} </td>
+        </tr>
+      </table>
+    </div>
+    <div class="table_bill_date">
+      <mat-form-field appearance="fill">
+        <!-- <mat-label>Choose Bill date</mat-label> -->
+        <input matInput [matDatepicker]="picker" [formControl]="dateSelectFormControl"  placeholder="Bill Date = {{ currentDate | date:'dd-MM-yyyy'}}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="payment_mediums" appearance="fill">
+        <mat-label>Payment Medium</mat-label>
+        <mat-select [formControl]="paymentMethodFormControl">
+          <mat-option *ngFor="let item of payment_mediums" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="card" align="right">
+      <mat-card class="udhari-card">
+        <mat-card-header>
+          <mat-card-title >Total leftover</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <i>
+            {{totalLeftover}} &nbsp; ₹ &nbsp;
+          </i>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button class="btn-showBills" (click)="showBillsClicked()">Show bills</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div mat-dialog-content>
+  <form [formGroup]="customerDetails" (ngSubmit)="onFormSubmit()">
+    <table>
+      <tr *ngIf="!isUserSelected">
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Customer ID</mat-label>
+            <input type="text" matInput formControlName="CUST_ID" [matAutocomplete]="matAutocompleteCustId">
+            <mat-autocomplete #matAutocompleteCustId="matAutocomplete" [displayWith]="displayFn3" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                <b> {{ record.CUST_ID}} </b> {{" -- " + record.FIRST_NAME + " " + record.LAST_NAME + " -- " + record.MOBILE + " -- " + record.VILLAGE  + "--" + record.TALUKA + " -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Bill number</mat-label>
+            <input type="text" matInput  formControlName="BILL_NO" [matAutocomplete]="matAutocompleteBill" >
+            <mat-autocomplete #matAutocompleteBill="matAutocomplete" [displayWith]="displayFn" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- " + record.FIRST_NAME + " " + record.LAST_NAME + " -- " + record.MOBILE + " -- " + record.VILLAGE  + "--" + record.TALUKA + " -- "}} <b> {{record.BILL_NO}} </b>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input type="text" matInput formControlName="FIRST_NAME" [matAutocomplete]="matAutocompleteFirstName">
+            <mat-autocomplete #matAutocompleteFirstName="matAutocomplete" [displayWith]="displayFn4" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- "}} <b> {{record.FIRST_NAME}} </b>  {{" " + record.LAST_NAME + " -- " + record.MOBILE + " -- " + record.VILLAGE  + "--" + record.TALUKA + " -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input type="text" matInput formControlName="LAST_NAME" [matAutocomplete]="matAutocompleteLastName">
+            <mat-autocomplete #matAutocompleteLastName="matAutocomplete" [displayWith]="displayFn5" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- " + record.FIRST_NAME + " "}} <b> {{record.LAST_NAME}} </b>  {{" -- " + record.MOBILE + " -- " + record.VILLAGE  + "--" + record.TALUKA + " -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr *ngIf="!isUserSelected">
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Mobile number</mat-label>
+            <input type="text" matInput formControlName="MOBILE"  [matAutocomplete]="matAutocompleteMobile">
+            <mat-autocomplete #matAutocompleteMobile="matAutocomplete" [displayWith]="displayFn2" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- " + record.FIRST_NAME + " " + record.LAST_NAME + " -- "}} <b> {{record.MOBILE}} </b> {{" -- " + record.VILLAGE  + "--" + record.TALUKA + " -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>City/Village</mat-label>
+            <input type="text" matInput formControlName="VILLAGE"  [matAutocomplete]="matAutocompleteVillage">
+            <mat-autocomplete #matAutocompleteVillage="matAutocomplete" [displayWith]="displayFn6" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- " + record.FIRST_NAME + " " + record.LAST_NAME + " -- " + record.MOBILE + " -- "}} <b> {{record.VILLAGE}} </b> {{"--" + record.TALUKA + " -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Taluka</mat-label>
+            <input type="text" matInput formControlName="TALUKA"  [matAutocomplete]="matAutocompleteTaluka">
+            <mat-autocomplete #matAutocompleteTaluka="matAutocomplete" [displayWith]="displayFn7" [panelWidth]="600" (optionSelected)='customerSelected($event.option.value)'>
+              <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+                {{ record.CUST_ID + " -- " + record.FIRST_NAME + " " + record.LAST_NAME + " -- " + record.MOBILE + " -- " + record.VILLAGE + "--"}} <b> {{record.TALUKA}} </b> {{" -- " + record.BILL_NO}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" *ngIf="!isUserSelected">
+            <!-- <mat-label>Choose Bill date</mat-label> -->
+            <input matInput [matDatepicker]="picker" [formControl]="dateSelectFormControl"  placeholder="Bill Date = {{ currentDate | date:'dd-MM-yyyy'}}">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="payment_mediums2" appearance="fill" *ngIf="!isUserSelected">
+            <mat-label>Payment Medium</mat-label>
+            <mat-select [formControl]="paymentMethodFormControl">
+              <mat-option *ngFor="let item of payment_mediums" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div *ngFor='let item of items; let i = index'>
+    <mat-divider class="mat-divider_items"></mat-divider>
+    <table >
+      <tr>  
+        <td>       
+          <mat-form-field appearance="fill">
+            <mat-label>Item Name</mat-label>
+            <mat-select  (selectionChange)="dropDownValueChange($event.value, 'ITEM', i)">
+              <mat-option *ngFor="let x of itemTypes" [value]="x">{{x}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Item Material</mat-label>
+            <mat-select  (selectionChange)="dropDownValueChange($event.value, 'ITEM_MATERIAL', i)">
+              <mat-option *ngFor="let m of item_materials" [value]="m">{{m}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td *ngIf="item.ITEM_MATERIAL == 'Gold' ">
+          <mat-form-field appearance="fill">
+            <mat-label>HM code</mat-label>
+            <mat-select  (selectionChange)="dropDownValueChange($event.value, 'HM', i)">
+              <mat-option *ngFor="let hm of hm_codes" [value]="hm">{{hm}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Quantity</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="1" (change)="valuechange($event, 'QUANTITY', i)">
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- <button (click)="addItem()"> Add item </button> -->
+          <button  mat-mini-fab (click)="addItem()" color="primary" aria-label="Add Item">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button *ngIf="items.length>1" class="btn-remove" mat-mini-fab (click)="removeItem(i)" color="warn" aria-label="Remove Item">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Weight (per item)</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" (change)="valuechange($event, 'WEIGHT', i)">
+            <span matPrefix> gm &nbsp;</span>
+            <!-- <span matSuffix>.00</span> -->
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Rate per gm</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0" (change)="valuechange($event, 'RATE', i)">
+            <span matPrefix> ₹ &nbsp;</span>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Labor charge per gm</mat-label>
+            <input matInput type="number"  class="example-right-align" placeholder="0" (change)="valuechange($event, 'LABOR_CHARGE', i)">
+            <span matPrefix> ₹ &nbsp;</span>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Total Amount </mat-label>
+            <input matInput type="number" readonly  class="example-right-align" placeholder="0"  [(ngModel)]="items[i]['TOTAL']" >
+            <!-- [(ngModel)]="record['AMOUNT']" -->
+            <span matPrefix> ₹ &nbsp;</span>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- <mat-divider class="mat-divider_final_bill"> Total Bill </mat-divider> -->
+  <div class="container">
+    <div class="line"><mat-divider class="mat-divider_final_bill"></mat-divider></div>
+    <div class="text mat-typography">Final Bill</div>
+    <div class="line"><mat-divider class="mat-divider_final_bill"></mat-divider></div>
+  </div>
+
+  <table>
+    <tr>
+      <td>
+        <mat-form-field appearance="fill" floatLabel="always" class="number_field">
+          <mat-label>Total Bill Amount </mat-label>
+          <input matInput type="number" readonly   placeholder="0" [(ngModel)]="record['TOTAL_BILL_AMOUNT']" >
+          <span matPrefix> ₹ &nbsp;</span>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" floatLabel="always" class="number_field">
+          <mat-label>Paid amount</mat-label>
+          <input matInput type="number"  placeholder="0" (change)="valuechange($event, 'PAID')">
+          <span matPrefix> ₹ &nbsp;</span>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" floatLabel="always" class="number_field">
+          <mat-label>Barter/Mod amount</mat-label>
+          <input matInput type="number"  placeholder="0" (change)="valuechange($event, 'BARTER_MOD')">
+          <span matPrefix> ₹ &nbsp;</span>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" floatLabel="always" class="number_field">
+          <mat-label>Discount amount</mat-label>
+          <input matInput type="number"  placeholder="0" (change)="valuechange($event, 'DISCOUNT')">
+          <span matPrefix> ₹ &nbsp;</span>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill" floatLabel="always" class="number_field">
+          <mat-label>Return/Sttlement amount</mat-label>
+          <input matInput type="number" readonly   placeholder="0" [(ngModel)]="record['RETURN']" >
+          <span matPrefix> ₹ &nbsp;</span>
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <button type="submit" mat-raised-button class="btn-success" (click)="onSaveBillClick()" [disabled]="isBillSaved"> Save Bill </button>
+      </td>
+      <td>
+        <mat-spinner *ngIf="saveSpinner" diameter="35"></mat-spinner>
+      </td>
+      <td >
+        <button mat-raised-button color="primary" (click)="onPrintClick()" *ngIf="isBillSaved"> Print Bill </button>
+      </td>
+      <td>
+        <button mat-raised-button class="btn-close" (click)="onCloseClick()"> Cancel & Close </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div>
+
+</div>
+
+
+
+ <!-- <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>First name</mat-label>
+      <input type = "text" matInput  [(ngModel)]="record['FIRST_NAME']" >
+    </mat-form-field> -->
+
+    <!-- <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Customer ID</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" [(ngModel)]="record['CUST_ID']" >
+    </mat-form-field> -->
+
+    <!-- <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Last name</mat-label>
+      <input type = "text" matInput [(ngModel)]="record['LAST_NAME']" >
+    </mat-form-field> -->
+    
+    <!-- <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Mobile number</mat-label>
+      <input type = "text" matInput [(ngModel)]="record['MOBILE']">
+    </mat-form-field> -->
+
+    <!-- <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Taluka</mat-label>
+      <input type = "text" matInput [(ngModel)]="record['TALUKA']" >
+    </mat-form-field> -->

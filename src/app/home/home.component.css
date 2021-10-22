@@ -1,0 +1,246 @@
+h1{
+    text-align: center;
+    color: rgb(187, 112, 14);
+    font-weight: bold;
+    padding: 0.6em;
+    /* margin-left: 59%; */
+}
+
+.span-1{
+    width: 10%;
+}
+.span-2{
+    width: 90%;
+    height: 50px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+span {
+    display: inline-block;
+}
+
+.mat-divider_title {
+    width: 40%;
+    margin-left: 30%;
+}
+
+.mat-divider {
+    margin-top: 1em;
+}
+
+b {
+    font-weight: 600;
+    font-size: 1.3em;
+}
+
+p {
+    float: right;
+    font-weight: 600;
+    color: red;
+    text-align: right;
+}
+
+mat-header-cell {
+    background-color: lightgray;
+    width: 100% !important;
+}
+
+.quick_filter {
+    width: 90%;
+}
+
+button {
+    margin-right: 1em;
+}
+
+
+.div-container {
+    padding: 0.6em;
+}
+
+.input-filter {
+    width: 80px;
+    padding-left: 10px;
+}
+
+table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+th.mat-header-cell {
+    color: rgb(31, 29, 29);
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+    padding-right: 2em;
+}
+
+
+/* .mat-column-FIRST_NAME {
+    overflow: hidden;
+    width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} */
+
+th, td {
+    padding-right: 1em;
+    overflow: hidden;
+    /* width: auto; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mat-column-BILL_NO, .mat-column-INDEX {
+    text-align: center;
+} 
+
+
+
+.demo-table{
+    width: 100%;
+}
+
+.div-table_container {
+    width: 100%;
+    /* overflow: auto; */
+
+}
+
+/* mat-table{
+    width: 100%;
+} */
+
+/* mat-header-cell {
+    white-space: nowrap;
+} */
+
+/* mat-header-cell {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+} */
+
+/* .mat-column-emailid {
+    /* padding-right: 20px !important; */
+    /* word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word; 
+
+} */
+
+/* .mat-column-emailid {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  } */
+
+/* .mat-table__wrapper .mat-table {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-header-row {
+    width: 100%;
+} */
+
+/* .mat-row {
+    width: 100%;
+} */
+
+/* .mat-footer-row,
+.mat-header-row,
+.mat-row {
+    display: inline-flex;
+    min-width: 100%;
+} */
+
+.div_wrapper{
+    white-space: nowrap;
+    display: table;
+    width: 100%;
+}
+
+.div_wrapper div {
+    display: table-cell;
+}
+
+.table_selected_cust {
+    width: 40%;
+    margin-left: 1em;
+}
+
+.key {
+    font-size: 14px;
+    color: grey;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(15, 15, 15);
+}
+
+.card {
+    width: 2%;
+    text-align: center;
+    vertical-align: middle
+}
+
+.div_custDetails {
+    width: 40%;
+}
+
+.udhari-card {
+    width: 10em;
+}
+
+mat-card {
+    background-color: lightgray;
+    margin-bottom: 1em;
+}
+
+mat-card-header {
+    font-weight: 600;
+}
+
+i {
+    font-size: larger;
+    font-weight: 600;
+    color: red;
+}
+
+.btn-container {
+    display: inline-block;
+}
+
+.btn-reload {
+    margin-left: 2em;
+}
+
+.btn-download {
+    align-content: right;
+}
+
+.btn-success {
+    color: white;
+    font-size: 1.2em;
+    background-color: #19c040;
+}

@@ -1,0 +1,166 @@
+.example-right-align {
+    text-align: right;
+}
+
+.number_field {
+    width: 13em;
+}
+
+.mat-divider_titlebar {
+    width: 25%;
+    margin-bottom: 1em;
+}
+
+.mat-divider_items {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.mat-divider_final_bill {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border-top-width: 5px;
+    border-top-style: dashed;
+    border-top-color: rgba(115, 228, 166, 0.85);
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.line {
+    flex: 1;
+}
+
+.text {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: peru;
+}
+
+mat-form-field, button {
+    margin-right: 2em;
+}
+
+.div_wrapper{
+    white-space: nowrap;
+    display: table;
+    width: 100%;
+}
+
+.div_wrapper div {
+    display: table-cell;
+}
+
+.table_selected_cust {
+    width: 50%;
+}
+
+.table_bill_date {
+    width: 30%;
+}
+
+.payment_mediums {
+    width: 17em;
+}
+
+.payment_mediums2 {
+    width: 8em;
+}
+
+.card {
+    width: 20%;
+}
+
+.btn-success {
+    color: white;
+    font-size: 1.2em;
+    background-color: #19c040;
+}
+
+.btn-reset {
+    margin-bottom: 0.6em;
+    background-color: #dfaeae;
+}
+
+.btn-showBills {
+    background-color: whitesmoke; 
+}
+
+.btn-edit {
+    margin-left: 2em;
+}
+
+.btn-remove {
+    margin-top: 0.5em;
+}
+
+.btn-close {
+    background-color: lightgray;
+}
+
+h2 {
+    text-align: start;
+    font-weight: 600;
+}
+
+span {
+    display: inline-block;
+}
+
+b {
+    color: blue;
+}
+
+.key {
+    font-size: 14px;
+    color: grey;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(15, 15, 15);
+}
+
+
+.udhari-card {
+    width: 10em;
+}
+
+mat-card {
+    background-color: lightgray;
+    margin-bottom: 1em;
+}
+
+mat-card-header {
+    font-weight: 600;
+}
+
+i {
+    font-size: larger;
+    font-weight: 600;
+    color: red;
+}
+
+mat-card-actions, mat-card-content {
+    text-align: center;
+}
+
+mat-icon {
+    font-size: 1.5em;
+    font-weight: 600;
+    /* text-align: center; */
+}
+
+
+
+/* ::ng-deep .cdk-overlay-pane {
+    width: 450px !important;
+} */

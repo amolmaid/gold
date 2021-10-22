@@ -1,0 +1,142 @@
+<!-- <div  [style.background-image]="'url(/assets/bill.jpg' + ')'" class="container">
+    <p class="relative">Amol Shivaji Maid</p>
+</div> -->
+
+<div id="bill-template"> 
+    <h3 align="center"> <b> Bill Invoice </b> </h3>
+    <mat-divider class="mat-divider_title"></mat-divider>
+    
+    <div class="container_header">
+        <span class="title_span1">
+            <img src="../../assets/logo.jpg" width="100" height="100" >
+        </span>
+        <span class="title_span2">
+            <h1>Nagare Jewellers</h1>
+            <b> Keli Rumhanwadi, Tal-Akole</b>
+            <br/>
+            <b> Mobile: 8975147924, 7350462429</b>
+            <br/>
+            <b> Email: nagarejwellers21@gmail.com</b>
+        </span>
+        <span class="title_span3" align="right">
+            <img src="../../assets/hollmark.jpg" width="100" height="100" >
+        </span>
+    </div>
+
+
+    <mat-divider class="mat-divider_shop"></mat-divider>
+    <div class="container">
+        <span class="container_span1">
+            <table class="table_selected_cust">
+                <tr>
+                    <td>
+                        <tr >
+                            <td class="key"> Customer Id </td>
+                            <td class="value"> {{record['CUST_ID']}} </td>
+                            </tr>
+                            <tr >
+                            <td class="key"> Customer Name </td>
+                            <td class="value"> {{record['FIRST_NAME'] + " " + record['LAST_NAME']}} </td>
+                            </tr>
+                            <tr >
+                            <td class="key"> Mobile number </td>
+                            <td class="value"> {{record['MOBILE']}} </td>
+                            </tr>
+                            <tr >
+                            <td class="key"> Address </td>
+                            <td class="value"> {{record['VILLAGE'] + ", " + record['TALUKA']}} </td>
+                        </tr>
+                    </td>
+                </tr>
+            </table>
+        </span>
+        <span class="container_span2">
+            <table class="table-section-2">
+                <tr>
+                    <td>
+                        <tr >
+                            <td class="key"> Bill Id </td>
+                            <td class="value"> {{record['BILL_NO']}} </td>
+                        </tr>
+                        <tr >
+                            <td class="key"> Bill Date </td>
+                            <td class="value"> {{record['DATE']}} </td>
+                        </tr>
+                        <tr >
+                            <td class="key"> Payment Medium </td>
+                            <td class="value"> {{record['PAY_MEDIUM']}} </td>
+                        </tr>
+                        <tr >
+                            <td class="key"> Un-paid Amount </td>
+                            <td class="value hilight"> {{record['RETURN']}} </td>
+                        </tr>
+                    </td>
+                </tr>
+            </table>
+        </span>
+    </div>
+
+    <mat-divider class="mat-divider_items"></mat-divider>
+    <table style="width: 95%;" class="table_items">
+        <tr style="outline: thin solid;" class="row">
+            <th>
+                Sr. Number
+            </th>
+            <th>
+                Item name
+            </th>
+            <th>
+                Material
+            </th>
+            <th>
+                Purity
+            </th>
+            <th>
+                Weight
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+        <tr *ngFor="let item of items; let i = index" style="outline: thin solid">
+            <td class="tdata"> {{ i+1 }} </td>
+            <td class="tdata"> {{ item.ITEM }} </td>
+            <td class="tdata"> {{ item.ITEM_MATERIAL }} </td>
+            <td class="tdata"> {{ item.HM }} </td>
+            <td class="tdata"> {{ item.WEIGHT }} </td>
+            <td class="tdata"> {{ item.QUANTITY }} </td>
+            <td class="tdata"> {{ item.TOTAL }} </td>
+
+        </tr>
+    </table>
+
+    <mat-divider class="mat-divider_final"></mat-divider>
+    <div>
+        <span class="span_total1">
+            <b> Total Bill Amount </b> 
+        </span>
+        <span class="span_total2 hilight_total">
+            <b>₹ &nbsp; {{record.TOTAL_BILL_AMOUNT}} </b> 
+        </span>
+    </div>
+
+    <mat-divider class="mat-divider_footer"></mat-divider>
+
+
+    <div class="div_footer">
+        <span class="span_footer1">
+            <b> Customer sign</b> 
+        </span>
+        <span class="span_footer2">
+            <b> For Nagare Jewellers </b> 
+        </span>
+    </div>
+
+</div>
+
+<button mat-raised-button color="primary" (click)="downloadBill()" > Download Bill </button>
+
+

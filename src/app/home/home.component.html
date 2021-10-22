@@ -1,0 +1,152 @@
+<table >
+    <colgroup>
+        <col span="3" style="width: 35%">
+        <col style="width: 60%">
+        <col style="width: 5%">
+      </colgroup>
+    <tr> 
+        <td>
+          <img src="../../assets/logo.jpg" width="100" height="100" >
+        </td>
+        <td>
+            <h1>Welcome to Jeweller's shop Bill counter</h1>
+        </td>
+        <td>
+          <p title="Session timeout time"> {{sessionExpirationTimeLeft_minutes}} : {{sessionExpirationTimeLeft_seconds}} 
+            <br/>
+            <a [routerLink]="" (click)="logIn()">Login again</a>
+          </p>
+        </td>
+    </tr>
+</table> 
+
+<mat-divider class="mat-divider_upper"></mat-divider>
+
+<div *ngIf="selectedRecord != null" class="div_wrapper">
+    <div class="div_custDetails">
+      <table class="table_selected_cust">
+        <tr>
+            <b>Selected Customer:</b>
+        </tr>
+        <tr >
+          <td class="key"> Customer Id </td>
+          <td class="value"> {{selectedRecord['CUST_ID']}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Customer Name </td>
+          <td class="value"> {{selectedRecord['FIRST_NAME'] + " " + selectedRecord['LAST_NAME']}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Mobile number </td>
+          <td class="value"> {{selectedRecord['MOBILE']}} </td>
+        </tr>
+        <tr >
+          <td class="key"> Address </td>
+          <td class="value"> {{selectedRecord['VILLAGE'] + ", " + selectedRecord['TALUKA']}} </td>
+        </tr>
+      </table>
+    </div>
+    <div class="card" >
+      <mat-card class="udhari-card">
+        <mat-card-header>
+          <mat-card-title >Total leftover</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <i>
+            {{totalLeftover}} &nbsp; ₹ &nbsp;
+          </i>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>
+<mat-divider *ngIf="selectedRecord != null"></mat-divider>
+
+<mat-spinner *ngIf="showSpinner" diameter="100"></mat-spinner>
+
+
+<!-- <br/>
+<button type="submit" (click)="logIn()"> Sign In </button>
+
+<button type="submit" (click)="getData()"> getData </button>
+
+<button type="submit" (click)="showData()"> showData </button>
+
+<button align="right" type="submit" (click)="showFullData()"> Full data </button>
+
+<button align="right" type="submit" (click)="downloadData()"> Download Data </button>
+
+<button align="right" type="submit" (click)="downloadBill()"> Download Image bill </button>
+
+<button align="right" type="submit" (click)="InsertData()"> New Purchase </button>
+
+<br/> -->
+
+<div class="div-container" id="my-node">
+  <table >
+    <colgroup>
+        <col span="4" style="width: 35%">
+        <col style="width: 5%">
+        <col style="width: 55%">
+        <col style="width: 5%">
+      </colgroup>
+    <tr> 
+        <td>
+          <mat-form-field class="quick_filter" appearance="standard">
+            <mat-label>Quick filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="e.g Customer name" #input>
+        </mat-form-field>
+        </td>
+        <td>
+          <button  class="btn-reload" color="primary" mat-mini-fab title="Refresh data" (click)="onRefreshClick()">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button class="btn-success"  mat-raised-button *ngIf="selectedRecord == null" type="submit" (click)="InsertData()" > New Purchase </button>
+        </td>
+        <td>
+          <button mat-raised-button *ngIf="selectedRecord != null" color="accent" type="submit" (click)="showFullData()" title="Show full data" > Reset selection </button>
+        </td>
+        <td>
+          <button mat-raised-button color="warn" type="submit" (dblclick)="downloadData()"  title="Download full data in Excel format" > Download Backup </button>
+        </td>
+    </tr>
+  </table> 
+
+  <div class="div-table_container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+</div>
+<mat-paginator [length]="50" [pageSize]="20" [pageSizeOptions]="[10, 20, 50, 75, 100]" showFirstLastButtons> </mat-paginator>
+
+
+
+
+        <!-- <mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort>
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+                <mat-header-cell  *matHeaderCellDef mat-sort-header>
+                <b>  {{column|titlecase}} </b> 
+            -->
+                <!-- <br>
+                    <mat-form-field class="input-filter" floatLabel="never">
+                        <mat-label>{{column|titlecase}} Filter</mat-label>
+                        <input matInput #inputValue (keyup)="applyFilter(inputValue.value)" (focus)="setupFilter(column)">
+                    </mat-form-field>
+                 -->
+            <!-- </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table> -->

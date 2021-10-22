@@ -1,0 +1,151 @@
+/* .container {
+    width: 700px;
+    height: 1000px;
+    background-image: url("bill.jpg"); 
+    background-color: blue;
+} */
+
+/* .container * {
+    padding-top: 262px;
+    padding-left: 66px;
+    font-size: 18px;
+    font-weight: 600;
+} */
+
+/* p.relative {
+    position: relative;
+    font-size: 18px;
+    left: 4em;
+    top: 14em;
+} */
+
+.title_span1 {
+    margin-left: 1em;
+    display: inline-block;
+    width: 20%;
+}
+
+.title_span2 {
+    margin-left: 1em;
+    align-content: center;
+    display: inline-block;
+    width: 50%;
+}
+
+.title_span3 {
+    /* margin-right: 1em; */
+    display: inline-block;
+    width: 25%;
+}
+
+.mat-divider_final {
+    margin-top: 15em;
+    margin-bottom: 1em;
+}
+
+.mat-divider_footer {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.span_total1 {
+    display: inline-block;
+    margin-left: 1.5em;
+    width: 77%;
+}
+
+.span_total2 {
+    display: inline-block;
+    margin-left: 1.5em;
+    width: 15%;
+}
+
+.container {
+    display: inline;
+}
+
+.container_span1 {
+    display: inline-block
+}
+
+.container_span2 {
+    margin-left: 10em;
+    display: inline-block
+}
+
+.div_footer {
+    margin-left: 1em;
+    margin-top: 7.5em;
+}
+
+.span_footer1{
+    display: inline-block;
+    width: 75%;
+}
+
+.span_footer2{
+    width: 25%;
+    display: inline-block;
+}
+
+#bill-template {
+    background-color: whitesmoke;
+    margin: 1em;
+    /* border: brown;
+    size: 1px solid; */
+    width: 700px;
+    height: 800px;
+    border: solid 1px black;
+    padding-bottom: 1.5em;
+    padding-right: 1.5em;
+}
+
+.mat-divider_title {
+    margin-bottom: 1em;
+}
+
+.mat-divider_shop {
+    margin-top: 1em;
+}
+
+.mat-divider_items {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.key {
+    font-size: 14px;
+    color: grey;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(15, 15, 15);
+}
+
+.hilight {
+    color: rgb(221, 42, 42);
+}
+
+.hilight_total {
+    color : rgb(40, 40, 207);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.table_items {
+    margin-left: 1.2em;
+}
+
+.tdata {
+    text-align: center;
+}
+
+.table-section-2 {
+    margin-left: 2em;
+}
+
+button {
+    margin: 1em;
+}

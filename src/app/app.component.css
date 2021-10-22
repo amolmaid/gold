@@ -1,0 +1,19 @@
+h2 {
+  color: #85C1E9;
+  text-align: center;
+}
+nav {
+  text-align: center;
+}
+a {
+  background-color: #85C1E9;
+  padding: 14px 16px;
+  text-decoration: none;
+  width: fit-content;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+}
+a.active {
+  background-color: hotpink;
+}

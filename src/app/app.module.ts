@@ -30,7 +30,8 @@ let gapiClientConfig: NgGapiClientConfig = {
   client_id: "288814605103-l52s8288c07v1gp53k78obsn8or7r5k8.apps.googleusercontent.com",
   discoveryDocs: [],
   ux_mode: "redirect",
-  redirect_uri: "http://localhost:4200/home",
+  // redirect_uri: "http://localhost:4200/home",
+  redirect_uri: "https://amolmaid.github.io/gold/home",
   scope: [
     'https://www.googleapis.com/auth/spreadsheets'
   ].join(" ")
